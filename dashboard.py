@@ -23,6 +23,7 @@ from sklearn.metrics import mean_absolute_error
 
 from sklearn.preprocessing import StandardScaler
 import pickle
+from PIL import Image
 
 
 header = st.container()
@@ -32,7 +33,12 @@ model = st.container()
 
 
 
+
 with header: 
+    
+    img = Image.open("mansfield_logo.jpg")
+    st.image(img)
+    
     st.title('Welcome To Our Mansfield Sales Forecast Dashboard!')
     st.text('In This Project We Will Forcast Mansfield Alto Sales For Three Months Ahead')
     

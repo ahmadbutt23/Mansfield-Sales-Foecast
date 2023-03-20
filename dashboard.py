@@ -85,7 +85,7 @@ with model:
     if model_choice == 'Holt-Winters':
         # Load the Holt-Winters model
 
-        with open('Sarima_model.pkl', 'rb') as h:
+        with open('holt_winters_model.pkl', 'rb') as h:
             model = pickle.load(h)
 
         # Load your data
@@ -200,6 +200,11 @@ with model:
         # Load the SARIMA model
         with open('Sarima_model.pkl', 'rb') as s:
             model = pickle.load(s)
+            
+            
+        # Load your data
+        standardized_data = pd.read_csv("standardized_data.csv")
+        standardized_data['Month'] = pd.to_datetime(standardized_data['Month'])
         
         # Make a prediction using the model
         

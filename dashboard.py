@@ -25,6 +25,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
 
 from sklearn.preprocessing import StandardScaler
+import pickle
 
 
 header = st.container()
@@ -87,7 +88,8 @@ with model:
     if model_choice == 'Holt-Winters':
         # Load the Holt-Winters model
 
-        model = joblib.load('holt_winters_model.pkl')
+        with open('Sarima_model.pkl', 'rb') as s:
+            model = pickle.load(s)
 
         # Load your data
         standardized_data = pd.read_csv("standardized_data.csv")

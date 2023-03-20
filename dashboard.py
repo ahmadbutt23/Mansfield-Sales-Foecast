@@ -1,12 +1,11 @@
 import streamlit as st
 import pandas as pd
-import joblib
 import matplotlib.pyplot as plt 
 import matplotlib.ticker as ticker
 
 import plotly.express as px
 import plotly.graph_objs as go
-from functools import reduce
+
 import statsmodels.api as sm
 from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.tools.eval_measures import rmse, meanabs, rmspe
@@ -17,8 +16,6 @@ import numpy as np
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 from statsmodels.tsa.vector_ar.var_model import VAR
 from statsmodels.tsa.statespace.varmax import VARMAX
-
-from statsmodels import __version__ as v_stm
 
 import statsmodels.api as sm
 from sklearn.metrics import mean_squared_error
@@ -88,8 +85,8 @@ with model:
     if model_choice == 'Holt-Winters':
         # Load the Holt-Winters model
 
-        with open('Sarima_model.pkl', 'rb') as s:
-            model = pickle.load(s)
+        with open('Sarima_model.pkl', 'rb') as h:
+            model = pickle.load(h)
 
         # Load your data
         standardized_data = pd.read_csv("standardized_data.csv")
@@ -201,7 +198,8 @@ with model:
         
     else:
         # Load the SARIMA model
-        model = joblib.load('Sarima_model.pkl')
+        with open('Sarima_model.pkl', 'rb') as s:
+            model = pickle.load(s)
         
         # Make a prediction using the model
         
@@ -242,7 +240,7 @@ with model:
 
   # Create traces for original and predicted data
         trace1 = go.Scatter(x=standardized_data['Month'], y=standardized_data['Orders'], mode='lines', name='Original Data')
-        trace2 = go.Scatter(x=pred_data['Month'], y=pred_data['Orders'], mode='lines', name='Predicted Data', line=dict(color='orange'))
+        trace2 = go.Scatter(x=pred_data['Month'], y=pred_data['Orders'], mode='lines', name='Predicted Data',             line=dict(color='mediumseagreen'))
 
         # Set layout options
         layout = go.Layout(

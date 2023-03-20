@@ -35,7 +35,7 @@ model = st.container()
 
 
 with header: 
-    
+    ## Mansfield logo
     img = Image.open("mansfield_logo.jpg")
     st.image(img)
     
@@ -62,7 +62,7 @@ with dataset:
 with features:
     st.header('Macro Variables We Used')
     
-    macro_var = pd.read_csv('macro_variables.csv')
+    macro_var = pd.read_csv('macro_variables_clean.csv')
     macro_var
     
     standardized_data = pd.read_csv('standardized_data.csv')
